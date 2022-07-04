@@ -28,7 +28,10 @@ class MainActivity : AppCompatActivity() {
         navigation.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.dashboard->{
-                    Toast.makeText(this@MainActivity, "Dashboard is clicked", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame,DashboardFragment())
+                        .commit()
+                        drawerLayout.closeDrawers()
                 }
                 R.id.fav->{
                     Toast.makeText(this@MainActivity, "Favourite is clicked", Toast.LENGTH_SHORT).show()
