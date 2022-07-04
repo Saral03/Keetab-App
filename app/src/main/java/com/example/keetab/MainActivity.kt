@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack("Dashboard")
                         .commit()
                         drawerLayout.closeDrawers()
+                    supportActionBar?.title="Dashboard"
                 }
                 R.id.fav->{
                     supportFragmentManager.beginTransaction()
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack("Favourites")
                         .commit()
                     drawerLayout.closeDrawers()
+                    supportActionBar?.title="Favourites"
                 }
                 R.id.profile->{
                     supportFragmentManager.beginTransaction()
@@ -47,6 +49,7 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack("Profile")
                         .commit()
                     drawerLayout.closeDrawers()
+                    supportActionBar?.title="Profile"
                 }
                 R.id.about->{
                     supportFragmentManager.beginTransaction()
@@ -54,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack("About")
                         .commit()
                     drawerLayout.closeDrawers()
+                    supportActionBar?.title="About"
                 }
             }
             return@setNavigationItemSelectedListener true
