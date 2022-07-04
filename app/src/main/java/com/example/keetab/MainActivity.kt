@@ -25,15 +25,12 @@ class MainActivity : AppCompatActivity() {
         val actionBarDrawerToggle=ActionBarDrawerToggle(this@MainActivity, drawerLayout,R.string.drawer_open,R.string.drawer_close)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
+        openDashboard()
         navigation.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.dashboard->{
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame,DashboardFragment())
-                        .addToBackStack("Dashboard")
-                        .commit()
+                    openDashboard()
                         drawerLayout.closeDrawers()
-                    supportActionBar?.title="Dashboard"
                 }
                 R.id.fav->{
                     supportFragmentManager.beginTransaction()
@@ -77,6 +74,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+
+    }
+    fun openDashboard(){
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame,DashboardFragment())
+            .addToBackStack("Dashboard")
+            .commit()
+        supportActionBar?.title="Dashboard"
+    }
+
+    override fun onBackPressed() {
+        val frag=supportFragmentManager.findFragmentById(R.id.frame)
+        when(frag){
+            !is DashboardFragment->openDashboard()
+            else ->super.onBackPressed()
+        }
 
     }
 }
