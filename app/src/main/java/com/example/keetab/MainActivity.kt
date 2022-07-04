@@ -34,13 +34,22 @@ class MainActivity : AppCompatActivity() {
                         drawerLayout.closeDrawers()
                 }
                 R.id.fav->{
-                    Toast.makeText(this@MainActivity, "Favourite is clicked", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame,FavFragment())
+                        .commit()
+                    drawerLayout.closeDrawers()
                 }
                 R.id.profile->{
-                    Toast.makeText(this@MainActivity, "Profile is clicked", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame,ProfileFragment())
+                        .commit()
+                    drawerLayout.closeDrawers()
                 }
                 R.id.about->{
-                    Toast.makeText(this@MainActivity, "About is clicked", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame,AboutFragment())
+                        .commit()
+                    drawerLayout.closeDrawers()
                 }
             }
             return@setNavigationItemSelectedListener true
