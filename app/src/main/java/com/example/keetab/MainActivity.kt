@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationView
 lateinit var toolbar:Toolbar
 lateinit var drawerLayout:DrawerLayout
 lateinit var navigation:NavigationView
+var PreviousMenuitem:MenuItem?=null
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         actionBarDrawerToggle.syncState()
         openDashboard()
         navigation.setNavigationItemSelectedListener {
+            if (PreviousMenuitem!=null){
+                PreviousMenuitem?.isChecked=false
+            }
+            it.isCheckable=true
+            it.isChecked=true
+            PreviousMenuitem=it
             when(it.itemId){
                 R.id.dashboard->{
                     openDashboard()
@@ -82,6 +89,7 @@ class MainActivity : AppCompatActivity() {
             .addToBackStack("Dashboard")
             .commit()
         supportActionBar?.title="Dashboard"
+        navigation.setCheckedItem(R.id.dashboard)
     }
 
     override fun onBackPressed() {
