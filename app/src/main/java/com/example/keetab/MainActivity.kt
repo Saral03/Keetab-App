@@ -2,8 +2,11 @@ package com.example.keetab
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 
 lateinit var toolbar:Toolbar
@@ -24,5 +27,15 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title="Keetab"
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+       val id=item.itemId
+        if (id==android.R.id.home){
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        return super.onOptionsItemSelected(item)
+
     }
 }
