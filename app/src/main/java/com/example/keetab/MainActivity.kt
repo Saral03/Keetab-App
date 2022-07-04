@@ -30,24 +30,28 @@ class MainActivity : AppCompatActivity() {
                 R.id.dashboard->{
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame,DashboardFragment())
+                        .addToBackStack("Dashboard")
                         .commit()
                         drawerLayout.closeDrawers()
                 }
                 R.id.fav->{
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame,FavFragment())
+                        .addToBackStack("Favourites")
                         .commit()
                     drawerLayout.closeDrawers()
                 }
                 R.id.profile->{
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame,ProfileFragment())
+                        .addToBackStack("Profile")
                         .commit()
                     drawerLayout.closeDrawers()
                 }
                 R.id.about->{
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame,AboutFragment())
+                        .addToBackStack("About")
                         .commit()
                     drawerLayout.closeDrawers()
                 }
