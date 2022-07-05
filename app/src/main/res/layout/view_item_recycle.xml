@@ -42,29 +42,30 @@
         android:id="@+id/rating_star"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_toRightOf="@id/listitem"
+        android:layout_alignParentEnd="true"
         android:drawableLeft="@drawable/ic_baseline_star_24"
         android:layout_marginLeft="-60dp"
         android:layout_marginTop="-4dp">
 
     </TextView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="4.5"
-        android:layout_toRightOf="@id/rating_star"
-        android:textSize="14sp"
         android:layout_marginLeft="-25dp"
         android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/rating_star"
+        android:text="4.5"
         android:textColor="#F8D717"
-        android:textStyle="bold">
-    </TextView>
+        android:textSize="14sp"
+        android:textStyle="bold"></TextView>
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerVertical="true"
+        android:layout_marginTop="13dp"
         android:src="@mipmap/ic_launcher_round">
 
     </ImageView>

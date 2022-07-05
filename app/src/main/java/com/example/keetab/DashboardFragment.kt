@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -40,6 +41,7 @@ lateinit var recyclerAdapter: DashoboardAdapter
         recyclerAdapter= DashoboardAdapter(activity as Context,books)
         recycle.adapter=recyclerAdapter
         recycle.layoutManager=layoutManger
+        recycle.addItemDecoration(DividerItemDecoration(recycle.context,(layoutManger as LinearLayoutManager).orientation))
         return view
     }
 
