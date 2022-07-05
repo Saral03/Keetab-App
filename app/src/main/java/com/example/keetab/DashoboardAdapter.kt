@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import module.book
 
@@ -16,6 +18,7 @@ class DashoboardAdapter(val context: Context, val item:ArrayList<book>):Recycler
         val author:TextView=view.findViewById(R.id.author)
         val price:TextView=view.findViewById(R.id.price)
         val rating_val:TextView=view.findViewById(R.id.rating_val)
+        val mylayout:RelativeLayout=view.findViewById(R.id.mylayout)
 
     }
 
@@ -31,6 +34,9 @@ class DashoboardAdapter(val context: Context, val item:ArrayList<book>):Recycler
         holder.author.text=book.bookauthor
         holder.price.text=book.bookcost
         holder.rating_val.text=book.bookrating
+        holder.mylayout.setOnClickListener {
+            Toast.makeText(context, "Clicked on ${holder.showbooks.text}", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
