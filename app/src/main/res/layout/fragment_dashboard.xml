@@ -13,5 +13,15 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="18sp"
         android:textSize="15sp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/dashboard_frag"
+        android:layout_margin="10dp"
+        android:padding="5dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </RelativeLayout>

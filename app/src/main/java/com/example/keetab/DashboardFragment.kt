@@ -1,10 +1,13 @@
 package com.example.keetab
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -21,13 +24,23 @@ class DashboardFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
-
+lateinit var recycle:RecyclerView
+lateinit var layoutManger:RecyclerView.LayoutManager
+lateinit var recyclerAdapter: DashoboardAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+        val view=inflater.inflate(R.layout.fragment_dashboard, container, false)
+        recycle= view.findViewById(R.id.recycle)
+        layoutManger=LinearLayoutManager(activity)
+        val books= arrayListOf("P.S. I love You","The great Gatesby","Anna Karenina","Madame Bovary","War and Peace","Lolita","Middlemarch","The adventures of Hucckleberry Finn","Mobby-Dick","The lord of rings")
+        recyclerAdapter= DashoboardAdapter(activity as Context,books)
+        recycle.adapter=recyclerAdapter
+        recycle.layoutManager=layoutManger
+        return view
     }
 
     companion object {
