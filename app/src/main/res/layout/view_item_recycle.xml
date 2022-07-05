@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -15,22 +16,23 @@
         android:layout_toRightOf="@+id/img">
 
     </TextView>
+
     <TextView
         android:id="@+id/author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name of the author"
         android:layout_below="@id/listitem"
         android:layout_toRightOf="@id/img"
         android:padding="10dp"
+        android:text="Name of the author"
         android:textSize="15dp">
 
     </TextView>
+
     <TextView
         android:id="@+id/price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rs.299"
         android:layout_below="@id/author"
         android:layout_toRightOf="@id/img"
         android:padding="10dp"
@@ -38,24 +40,25 @@
         android:textStyle="bold">
 
     </TextView>
+
     <TextView
         android:id="@+id/rating_star"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:drawableLeft="@drawable/ic_baseline_star_24"
         android:layout_marginLeft="-60dp"
-        android:layout_marginTop="-4dp">
+        android:layout_marginTop="-4dp"
+        app:drawableLeftCompat="@drawable/ic_baseline_star_24">
 
     </TextView>
 
     <TextView
+        android:id="@+id/rating_val"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="-25dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/rating_star"
-        android:text="4.5"
         android:textColor="#F8D717"
         android:textSize="14sp"
         android:textStyle="bold"></TextView>
@@ -66,7 +69,8 @@
         android:layout_height="100dp"
         android:layout_centerVertical="true"
         android:layout_marginTop="13dp"
-        android:src="@mipmap/ic_launcher_round">
+        android:src="@mipmap/ic_launcher_round"
+        android:scaleType="centerCrop">
 
     </ImageView>
 

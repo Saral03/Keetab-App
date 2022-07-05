@@ -4,12 +4,19 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import module.book
 
-class DashoboardAdapter(val context: Context, val item:ArrayList<String>):RecyclerView.Adapter<DashoboardAdapter.DashboardViewHolder>() {
+class DashoboardAdapter(val context: Context, val item:ArrayList<book>):RecyclerView.Adapter<DashoboardAdapter.DashboardViewHolder>() {
     class DashboardViewHolder(view:View):RecyclerView.ViewHolder(view){
-        val textView:TextView=view.findViewById(R.id.listitem)
+        val showbooks:TextView=view.findViewById(R.id.listitem)
+        val img:ImageView=view.findViewById(R.id.img)
+        val author:TextView=view.findViewById(R.id.author)
+        val price:TextView=view.findViewById(R.id.price)
+        val rating_val:TextView=view.findViewById(R.id.rating_val)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardViewHolder {
@@ -18,8 +25,13 @@ class DashoboardAdapter(val context: Context, val item:ArrayList<String>):Recycl
     }
 
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
-        val text=item[position]
-        holder.textView.text=text
+        val book=item[position]
+        holder.showbooks.text=book.bookname
+        holder.img.setImageResource(book.bookimg)
+        holder.author.text=book.bookauthor
+        holder.price.text=book.bookcost
+        holder.rating_val.text=book.bookrating
+
     }
 
     override fun getItemCount(): Int {
