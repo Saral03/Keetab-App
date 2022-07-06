@@ -20,8 +20,14 @@
         android:layout_below="@id/dashboard_frag"
         android:layout_margin="10dp"
         android:padding="5dp">
-
     </androidx.recyclerview.widget.RecyclerView>
+<Button
+    android:id="@+id/check_internet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:text="Check Internet">
 
+</Button>
 
 </RelativeLayout>

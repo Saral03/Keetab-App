@@ -1,15 +1,18 @@
 package com.example.keetab
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import module.book
+import util.Internet
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -29,6 +32,7 @@ class DashboardFragment : Fragment() {
 lateinit var recycle:RecyclerView
 lateinit var layoutManger:RecyclerView.LayoutManager
 lateinit var recyclerAdapter: DashoboardAdapter
+lateinit var check_internet:Button
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +41,30 @@ lateinit var recyclerAdapter: DashoboardAdapter
         // Inflate the layout for this fragment
         val view=inflater.inflate(R.layout.fragment_dashboard, container, false)
         recycle= view.findViewById(R.id.recycle)
+        check_internet=view.findViewById(R.id.check_internet)
+        check_internet.setOnClickListener {
+            if (Internet().checkConnectivity(activity as Context)){
+                val dialog=AlertDialog.Builder(activity as Context)
+                dialog.setTitle("Success")
+                dialog.setMessage("Internet Found")
+                dialog.setPositiveButton("ok"){text,listner->
+
+                }
+                dialog.create()
+                dialog.show()
+            }
+            else{
+                val dialog=AlertDialog.Builder(activity as Context)
+                dialog.setTitle("Error")
+                dialog.setMessage("Internet not Found")
+                dialog.setNegativeButton("Cancel"){text,listner->
+
+                }
+                dialog.create()
+                dialog.show()
+
+            }
+        }
         layoutManger=LinearLayoutManager(activity)
         val books= arrayListOf("P.S. I love You","The great Gatesby","Anna Karenina","Madame Bovary","War and Peace","Lolita","Middlemarch","The adventures of Hucckleberry Finn","Mobby-Dick","The lord of rings")
         val bookInfoList = arrayListOf<book>(
