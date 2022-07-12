@@ -11,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -43,15 +45,21 @@ lateinit var recycle:RecyclerView
 lateinit var layoutManger:RecyclerView.LayoutManager
 lateinit var recyclerAdapter: DashoboardAdapter
 lateinit var check_internet:Button
+lateinit var progresslayout:RelativeLayout
+lateinit var bar_pro:ProgressBar
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
 
     ): View? {
         // Inflate the layout for this fragment
         val view=inflater.inflate(R.layout.fragment_dashboard, container, false)
         recycle= view.findViewById(R.id.recycle)
         check_internet=view.findViewById(R.id.check_internet)
+        progresslayout=view.findViewById(R.id.progresslayout)
+        bar_pro=view.findViewById(R.id.bar_pro)
+        progresslayout.visibility=View.VISIBLE
         check_internet.setOnClickListener {
             if (Internet().checkConnectivity(activity as Context)){
                 val dialog=AlertDialog.Builder(activity as Context)
@@ -97,6 +105,7 @@ lateinit var check_internet:Button
                 Response.Listener {
                     //here we will handle response
                     try {
+                        progresslayout.visibility=View.GONE
                         val success=it.getBoolean("success")
                         val bookInfoList = arrayListOf<book>()
                         if (success){
