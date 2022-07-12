@@ -1,14 +1,18 @@
 package com.example.keetab
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -86,41 +90,61 @@ lateinit var check_internet:Button
 
         val queue=Volley.newRequestQueue(activity as Context)
         val url="http://13.235.250.119/v1/book/fetch_books/"
-        val jsonObjectRequest=object :JsonObjectRequest(
-            Request.Method.GET,url,null,
-            Response.Listener {
-        //here we will handle response
-            val success=it.getBoolean("success")
-                val bookInfoList = arrayListOf<book>()
-                if (success){
-                    val data=it.getJSONArray("data")
-                    for (i in 0 until data.length()){
-                        val bookJsonObject=data.getJSONObject(i)
-                        val bookObj=book(bookJsonObject.getString("book_id"),bookJsonObject.getString("name"),bookJsonObject.getString("author"),
-                            bookJsonObject.getString("rating"),bookJsonObject.getString("price"),bookJsonObject.getString("image"))
-                        bookInfoList.add(bookObj)
-                        recyclerAdapter= DashoboardAdapter(activity as Context,bookInfoList)
-                        recycle.adapter=recyclerAdapter
-                        recycle.layoutManager=layoutManger
-                        recycle.addItemDecoration(DividerItemDecoration(recycle.context,(layoutManger as LinearLayoutManager).orientation))
+        if (Internet().checkConnectivity(activity as Context)){
+            val jsonObjectRequest=object :JsonObjectRequest(
+                Request.Method.GET,url,null,
+                Response.Listener {
+                    //here we will handle response
+                    val success=it.getBoolean("success")
+                    val bookInfoList = arrayListOf<book>()
+                    if (success){
+                        val data=it.getJSONArray("data")
+                        for (i in 0 until data.length()){
+                            val bookJsonObject=data.getJSONObject(i)
+                            val bookObj=book(bookJsonObject.getString("book_id"),bookJsonObject.getString("name"),bookJsonObject.getString("author"),
+                                bookJsonObject.getString("rating"),bookJsonObject.getString("price"),bookJsonObject.getString("image"))
+                            bookInfoList.add(bookObj)
+                            recyclerAdapter= DashoboardAdapter(activity as Context,bookInfoList)
+                            recycle.adapter=recyclerAdapter
+                            recycle.layoutManager=layoutManger
+                            recycle.addItemDecoration(DividerItemDecoration(recycle.context,(layoutManger as LinearLayoutManager).orientation))
+                        }
                     }
+                    else{
+                        Toast.makeText(activity as Context, "Error", Toast.LENGTH_SHORT).show()
+                    }
+                },Response.ErrorListener {
+                    //here we will handle the error
+                })
+            {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers=HashMap<String,String>()
+                    headers["content-type"]="application/json"
+                    headers["token"]="9c7c036c352378"
+                    return headers
                 }
-                else{
-                    Toast.makeText(activity as Context, "Error", Toast.LENGTH_SHORT).show()
-                }
-        },Response.ErrorListener {
-        //here we will handle the error
-        })
-        {
-            override fun getHeaders(): MutableMap<String, String> {
-                val headers=HashMap<String,String>()
-                headers["content-type"]="application/json"
-                headers["token"]="9c7c036c352378"
-                return headers
+
             }
+            queue.add(jsonObjectRequest)
+        }
+        else{
+            val dialog=AlertDialog.Builder(activity as Context)
+            dialog.setTitle("Error")
+            dialog.setMessage("Internet not Found")
+            dialog.setPositiveButton("Open Settings"){text,listner->
+                val settings=Intent(Settings.ACTION_WIRELESS_SETTINGS)
+                startActivity(settings)
+                activity?.finish()
+            }
+            dialog.setNegativeButton("Exit"){text,listner->
+                ActivityCompat.finishAffinity(activity as Activity)
+
+            }
+            dialog.create()
+            dialog.show()
 
         }
-        queue.add(jsonObjectRequest)
+
         return view
     }
 
