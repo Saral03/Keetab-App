@@ -30,9 +30,9 @@ class DashoboardAdapter(val context: Context, val item:ArrayList<book>):Recycler
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
         val book=item[position]
         holder.showbooks.text=book.bookname
-        holder.img.setImageResource(book.bookimg)
+        //holder.img.setImageResource(book.bookimg)
         holder.author.text=book.bookauthor
-        holder.price.text=book.bookcost
+        holder.price.text=book.bookprice
         holder.rating_val.text=book.bookrating
         holder.mylayout.setOnClickListener {
             Toast.makeText(context, "Clicked on ${holder.showbooks.text}", Toast.LENGTH_SHORT).show()

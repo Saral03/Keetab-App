@@ -1,3 +1,3 @@
 package module
 
-data class book(val bookname:String,val bookauthor:String,val bookcost:String,val bookrating:String,val bookimg:Int)
+data class book(val bookid:String,val bookname:String,val bookauthor:String,val bookrating:String,val bookprice:String,val bookimg:String)
