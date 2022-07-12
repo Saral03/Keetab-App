@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -44,7 +43,6 @@ class DashboardFragment : Fragment() {
 lateinit var recycle:RecyclerView
 lateinit var layoutManger:RecyclerView.LayoutManager
 lateinit var recyclerAdapter: DashoboardAdapter
-lateinit var check_internet:Button
 lateinit var progresslayout:RelativeLayout
 lateinit var bar_pro:ProgressBar
     override fun onCreateView(
@@ -56,33 +54,9 @@ lateinit var bar_pro:ProgressBar
         // Inflate the layout for this fragment
         val view=inflater.inflate(R.layout.fragment_dashboard, container, false)
         recycle= view.findViewById(R.id.recycle)
-        check_internet=view.findViewById(R.id.check_internet)
         progresslayout=view.findViewById(R.id.progresslayout)
         bar_pro=view.findViewById(R.id.bar_pro)
         progresslayout.visibility=View.VISIBLE
-        check_internet.setOnClickListener {
-            if (Internet().checkConnectivity(activity as Context)){
-                val dialog=AlertDialog.Builder(activity as Context)
-                dialog.setTitle("Success")
-                dialog.setMessage("Internet Found")
-                dialog.setPositiveButton("ok"){text,listner->
-
-                }
-                dialog.create()
-                dialog.show()
-            }
-            else{
-                val dialog=AlertDialog.Builder(activity as Context)
-                dialog.setTitle("Error")
-                dialog.setMessage("Internet not Found")
-                dialog.setNegativeButton("Cancel"){text,listner->
-
-                }
-                dialog.create()
-                dialog.show()
-
-            }
-        }
         layoutManger=LinearLayoutManager(activity)
 //        val bookInfoList = arrayListOf<book>(
 //            book("P.S. I love You", "Cecelia Ahern", "Rs. 299", "4.5", R.drawable.ps_ily),
@@ -118,7 +92,6 @@ lateinit var bar_pro:ProgressBar
                                 recyclerAdapter= DashoboardAdapter(activity as Context,bookInfoList)
                                 recycle.adapter=recyclerAdapter
                                 recycle.layoutManager=layoutManger
-                                recycle.addItemDecoration(DividerItemDecoration(recycle.context,(layoutManger as LinearLayoutManager).orientation))
                             }
                         }
                         else{
