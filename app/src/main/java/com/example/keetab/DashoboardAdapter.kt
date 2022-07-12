@@ -32,7 +32,7 @@ class DashoboardAdapter(val context: Context, val item:ArrayList<book>):Recycler
         val book=item[position]
         holder.showbooks.text=book.bookname
        // holder.img.setImageResource(book.bookimg)
-        Picasso.get().load(book.bookimg).into(holder.img)
+        Picasso.get().load(book.bookimg).error(R.drawable.default_book_cover).into(holder.img)
         holder.author.text=book.bookauthor
         holder.price.text=book.bookprice
         holder.rating_val.text=book.bookrating

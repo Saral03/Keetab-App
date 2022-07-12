@@ -121,7 +121,8 @@ lateinit var check_internet:Button
                     }
                     
                 },Response.ErrorListener {
-                    //here we will handle the error
+                    /*here we will handle the error*/
+                    Toast.makeText(activity as Context, "Volley error occured", Toast.LENGTH_SHORT).show()
                 })
             {
                 override fun getHeaders(): MutableMap<String, String> {
