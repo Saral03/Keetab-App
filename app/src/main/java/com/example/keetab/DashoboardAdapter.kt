@@ -9,6 +9,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import module.book
 
 class DashoboardAdapter(val context: Context, val item:ArrayList<book>):RecyclerView.Adapter<DashoboardAdapter.DashboardViewHolder>() {
@@ -30,7 +31,8 @@ class DashoboardAdapter(val context: Context, val item:ArrayList<book>):Recycler
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
         val book=item[position]
         holder.showbooks.text=book.bookname
-        //holder.img.setImageResource(book.bookimg)
+       // holder.img.setImageResource(book.bookimg)
+        Picasso.get().load(book.bookimg).into(holder.img)
         holder.author.text=book.bookauthor
         holder.price.text=book.bookprice
         holder.rating_val.text=book.bookrating
