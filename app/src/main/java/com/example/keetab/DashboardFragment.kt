@@ -21,6 +21,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import module.book
+import org.json.JSONException
 import util.Internet
 
 private const val ARG_PARAM1 = "param1"
@@ -95,24 +96,30 @@ lateinit var check_internet:Button
                 Request.Method.GET,url,null,
                 Response.Listener {
                     //here we will handle response
-                    val success=it.getBoolean("success")
-                    val bookInfoList = arrayListOf<book>()
-                    if (success){
-                        val data=it.getJSONArray("data")
-                        for (i in 0 until data.length()){
-                            val bookJsonObject=data.getJSONObject(i)
-                            val bookObj=book(bookJsonObject.getString("book_id"),bookJsonObject.getString("name"),bookJsonObject.getString("author"),
-                                bookJsonObject.getString("rating"),bookJsonObject.getString("price"),bookJsonObject.getString("image"))
-                            bookInfoList.add(bookObj)
-                            recyclerAdapter= DashoboardAdapter(activity as Context,bookInfoList)
-                            recycle.adapter=recyclerAdapter
-                            recycle.layoutManager=layoutManger
-                            recycle.addItemDecoration(DividerItemDecoration(recycle.context,(layoutManger as LinearLayoutManager).orientation))
+                    try {
+                        val success=it.getBoolean("success")
+                        val bookInfoList = arrayListOf<book>()
+                        if (success){
+                            val data=it.getJSONArray("data")
+                            for (i in 0 until data.length()){
+                                val bookJsonObject=data.getJSONObject(i)
+                                val bookObj=book(bookJsonObject.getString("book_id"),bookJsonObject.getString("name"),bookJsonObject.getString("author"),
+                                    bookJsonObject.getString("rating"),bookJsonObject.getString("price"),bookJsonObject.getString("image"))
+                                bookInfoList.add(bookObj)
+                                recyclerAdapter= DashoboardAdapter(activity as Context,bookInfoList)
+                                recycle.adapter=recyclerAdapter
+                                recycle.layoutManager=layoutManger
+                                recycle.addItemDecoration(DividerItemDecoration(recycle.context,(layoutManger as LinearLayoutManager).orientation))
+                            }
+                        }
+                        else{
+                            Toast.makeText(activity as Context, "Error", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    else{
-                        Toast.makeText(activity as Context, "Error", Toast.LENGTH_SHORT).show()
+                    catch (e:JSONException){
+                        Toast.makeText(activity as Context, "Json error occured", Toast.LENGTH_SHORT).show()
                     }
+                    
                 },Response.ErrorListener {
                     //here we will handle the error
                 })
