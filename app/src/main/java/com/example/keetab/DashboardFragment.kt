@@ -74,8 +74,7 @@ lateinit var bar_pro:ProgressBar
         val queue=Volley.newRequestQueue(activity as Context)
         val url="http://13.235.250.119/v1/book/fetch_books/"
         if (Internet().checkConnectivity(activity as Context)){
-            val jsonObjectRequest=object :JsonObjectRequest(
-                Request.Method.GET,url,null,
+            val jsonObjectRequest=object :JsonObjectRequest(Request.Method.GET,url,null,
                 Response.Listener {
                     //here we will handle response
                     try {

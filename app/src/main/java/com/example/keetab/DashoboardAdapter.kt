@@ -1,6 +1,7 @@
 package com.example.keetab
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,9 @@ class DashoboardAdapter(val context: Context, val item:ArrayList<book>):Recycler
         holder.price.text=book.bookprice
         holder.rating_val.text=book.bookrating
         holder.mylayout.setOnClickListener {
-            Toast.makeText(context, "Clicked on ${holder.showbooks.text}", Toast.LENGTH_SHORT).show()
+            val intent=Intent(context,DescriptionActivity::class.java)
+            intent.putExtra("book_id",book.bookid)
+            context.startActivity(intent)
         }
 
     }

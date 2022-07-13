@@ -7,7 +7,7 @@
     tools:context=".DescriptionActivity"
     android:background="@color/white">
 
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_desc"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
@@ -15,81 +15,88 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    </Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="20dp"
+    android:layout_marginBottom="30dp"
     android:layout_below="@id/toolbar_desc">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
             android:id="@+id/items_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="6">
+            android:weightSum="6"
+            >
+
             <ImageView
                 android:id="@+id/img_desc"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:src="@mipmap/ic_launcher_round"
+                android:padding="5dp"
                 android:scaleType="centerCrop"
-                android:padding="5dp">
-            </ImageView>
+                android:src="@mipmap/ic_launcher_round"></ImageView>
+
             <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="3.3">
+
                 <TextView
                     android:id="@+id/textbook_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name of the book"
                     android:padding="8dp"
-                    android:textSize="18sp"
+                    android:text="Name of the book"
                     android:textColor="@color/black"
+                    android:textSize="18sp"
                     android:textStyle="bold">
 
                 </TextView>
+
                 <TextView
                     android:id="@+id/bookauthor_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name of the Author"
-                    android:padding="8dp"
                     android:layout_below="@id/textbook_desc"
-                    android:textSize="15sp"
-                    android:textColor="@color/black">
+                    android:padding="8dp"
+                    android:text="Name of the Author"
+                    android:textColor="@color/black"
+                    android:textSize="15sp">
 
                 </TextView>
+
                 <TextView
                     android:id="@+id/bookprice_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rs 299"
-                    android:padding="8dp"
-                    android:textSize="15sp"
                     android:layout_below="@id/bookauthor_desc"
+                    android:padding="8dp"
+                    android:text="Rs 299"
                     android:textColor="#4AA54A"
+                    android:textSize="15sp"
                     android:textStyle="bold">
 
                 </TextView>
             </RelativeLayout>
+
             <TextView
                 android:id="@+id/rating_desc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.2"
+                android:drawableLeft="@drawable/ic_baseline_star_24"
+                android:drawablePadding="4dp"
                 android:padding="4dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 android:text="4.5"
                 android:textColor="#F8D717"
-                android:drawableLeft="@drawable/ic_baseline_star_24"
-                android:drawablePadding="4dp">
+                android:textSize="18sp"
+                android:textStyle="bold">
 
             </TextView>
         </LinearLayout>
@@ -97,28 +104,33 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/items_desc">
+
             <TextView
+                android:id="@+id/aboutthebook_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/aboutthebook_desc"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
                 android:padding="6dp"
-                android:textStyle="bold"
+                android:text="About the book"
                 android:textSize="16sp"
-                android:layout_marginTop="4dp"
-                android:text="About the book">
+                android:textStyle="bold">
 
             </TextView>
+
             <TextView
                 android:id="@+id/descaboutbook"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="description about book"
+                android:layout_height="match_parent"
                 android:layout_below="@id/aboutthebook_desc"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:padding="6dp"
-                android:textSize="18sp"
-                android:textColor="@color/black">
+                android:text="description about book"
+                android:textColor="@color/black"
+                android:textSize="18sp">
 
             </TextView>
         </RelativeLayout>
@@ -130,7 +142,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-
+        android:id="@+id/favbut_desc"
         android:textSize="19sp"
         android:text="Add to favourites"
         android:background="#006D5B"
@@ -138,7 +150,9 @@
         android:textColor="@color/white">
     </androidx.appcompat.widget.AppCompatButton>
 
+
     <RelativeLayout
+        android:id="@+id/progressLayout_desc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
