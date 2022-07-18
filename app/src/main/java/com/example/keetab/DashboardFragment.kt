@@ -22,6 +22,9 @@ import com.android.volley.toolbox.Volley
 import module.book
 import org.json.JSONException
 import util.Internet
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.HashMap
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -42,7 +45,11 @@ lateinit var recycle:RecyclerView
 lateinit var layoutManger:RecyclerView.LayoutManager
 lateinit var recyclerAdapter: DashoboardAdapter
 lateinit var progresslayout:RelativeLayout
+    val bookInfoList = arrayListOf<book>()
 lateinit var bar_pro:ProgressBar
+var ratingcomparator=Comparator<book>{Book1,Book2 ->
+    Book1.bookrating.compareTo(Book2.bookrating,true)
+}
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -79,7 +86,7 @@ lateinit var bar_pro:ProgressBar
                     try {
                         progresslayout.visibility=View.GONE
                         val success=it.getBoolean("success")
-                        val bookInfoList = arrayListOf<book>()
+                       // val bookInfoList = arrayListOf<book>()
                         if (success){
                             val data=it.getJSONArray("data")
                             for (i in 0 until data.length()){
@@ -138,6 +145,16 @@ lateinit var bar_pro:ProgressBar
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater?.inflate(R.menu.menu_dashboard,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id=item?.itemId
+        if (id==R.id.sort){
+            Collections.sort(bookInfoList,ratingcomparator)
+            bookInfoList.reverse()
+        }
+        recyclerAdapter.notifyDataSetChanged()
+        return super.onOptionsItemSelected(item)
     }
     companion object {
         /**
