@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Saral Handa/AndroidStudioProjects/Keetab/app/src/main/res/drawable/ic_baseline_sort.xml" value="0.116" />
         <entry key="..\:/Users/Saral Handa/AndroidStudioProjects/Keetab/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.116" />
         <entry key="..\:/Users/Saral Handa/AndroidStudioProjects/Keetab/app/src/main/res/drawable/rectangle.xml" value="0.116" />
         <entry key="..\:/Users/Saral Handa/AndroidStudioProjects/Keetab/app/src/main/res/drawable/round_corners.xml" value="0.116" />
@@ -16,6 +17,7 @@
         <entry key="..\:/Users/Saral Handa/AndroidStudioProjects/Keetab/app/src/main/res/layout/network_security.xml" value="0.2390625" />
         <entry key="..\:/Users/Saral Handa/AndroidStudioProjects/Keetab/app/src/main/res/layout/recycler_favorite_single_row.xml" value="0.2390625" />
         <entry key="..\:/Users/Saral Handa/AndroidStudioProjects/Keetab/app/src/main/res/layout/view_item_recycle.xml" value="0.2" />
+        <entry key="..\:/Users/Saral Handa/AndroidStudioProjects/Keetab/app/src/main/res/menu/menu_dashboard.xml" value="0.2" />
         <entry key="..\:/Users/Saral Handa/AndroidStudioProjects/Keetab/app/src/main/res/menu/menu_drawer.xml" value="0.2" />
         <entry key="..\:/Users/Saral Handa/AndroidStudioProjects/Keetab/app/src/main/res/xml/network_security.xml" value="0.2390625" />
       </map>
